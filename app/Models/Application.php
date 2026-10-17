@@ -3,6 +3,8 @@
 namespace App\Models;
 use App\Enums\ApplicationStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;  
 
 class Application extends Model
 {
@@ -13,4 +15,14 @@ class Application extends Model
     {
         return ['applied_on' => 'date','status'=> ApplicationStatus::class];
     }
+
+    public function statusChanges(): HasMany
+{
+    return $this->hasMany(StatusChange::class);
+}
+
+public function user(): BelongsTo
+{
+    return $this->belongsTo(User::class);
+}
 }

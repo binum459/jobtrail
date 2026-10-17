@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Enums\ApplicationStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class StatusChange extends Model
 {
@@ -14,4 +15,9 @@ class StatusChange extends Model
         'to_status' => ApplicationStatus::class,
         'changed_at' => 'datetime'];
     }
+
+    public function application(): BelongsTo
+{
+    return $this->belongsTo(Application::class);
+}
 }
