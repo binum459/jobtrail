@@ -15,16 +15,16 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('company_name');
-             $table->string('job_role');
+            $table->string('job_role');
             $table->string('location')->nullable();
-             $table->string('salary')->nullable();
+            $table->string('salary')->nullable();
             $table->string('job_source')->nullable();
             $table->string('job_url')->nullable();
-             $table->date('applied_on')->nullable();
-             $table->string('status')->default('wishlist');
-             $table->unsignedInteger('position')->default(0);
-              $table->text('notes')->nullable();
-               $table->timestamps();
+            $table->date('applied_on')->nullable();
+            $table->string('status')->default('wishlist');
+            $table->unsignedInteger('position')->default(0);
+            $table->text('notes')->nullable();
+            $table->timestamps();
         });
     }
 

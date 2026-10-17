@@ -4,10 +4,10 @@ namespace App\Enums;
 
 enum ApplicationStatus: string
 {
-     case Wishlist = 'wishlist';
-     case Applied = 'applied';
-     case Interview = 'interview'; 
-     case Offer = 'offer';
-     case  Rejected = 'rejected'; 
-     case Ghosted = 'ghosted';
+    case Wishlist = 'wishlist';
+    case Applied = 'applied';
+    case Interview = 'interview';
+    case Offer = 'offer';
+    case Rejected = 'rejected';
+    case Ghosted = 'ghosted';
 }
