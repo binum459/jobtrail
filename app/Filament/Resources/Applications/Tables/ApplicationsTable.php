@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources\Applications\Tables;
 
+use App\Enums\ApplicationStatus;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ApplicationsTable
@@ -14,29 +16,21 @@ class ApplicationsTable
     {
         return $table
             ->columns([
-                TextColumn::make('user.name')
-                    ->searchable(),
                 TextColumn::make('company_name')
                     ->searchable(),
                 TextColumn::make('job_role')
                     ->searchable(),
-                TextColumn::make('location')
-                    ->searchable(),
-                TextColumn::make('salary')
-                    ->searchable(),
-                TextColumn::make('job_source')
-                    ->searchable(),
+                TextColumn::make('location'),
+                TextColumn::make('salary'),
+                TextColumn::make('job_source'),
                 TextColumn::make('job_url')
-                    ->searchable(),
+                    ->url(fn ($record) => $record->job_url)
+                    ->openUrlInNewTab(),
                 TextColumn::make('applied_on')
                     ->date()
                     ->sortable(),
                 TextColumn::make('status')
-                    ->badge()
-                    ->searchable(),
-                TextColumn::make('position')
-                    ->numeric()
-                    ->sortable(),
+                    ->badge(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -46,8 +40,10 @@ class ApplicationsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
-                //
+                SelectFilter::make('status')
+                    ->options(ApplicationStatus::class),
             ])
             ->recordActions([
                 EditAction::make(),
@@ -57,5 +53,6 @@ class ApplicationsTable
                     DeleteBulkAction::make(),
                 ]),
             ]);
+
     }
 }
