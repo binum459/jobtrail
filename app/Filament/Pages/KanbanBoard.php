@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Enums\ApplicationStatus;
 use App\Models\Application;
 use App\Models\User;
 use BackedEnum;
@@ -25,5 +26,17 @@ class KanbanBoard extends Page
             ->orderBy('position')
             ->get()
             ->groupBy(fn (Application $application) => $application->status->value);
+    }
+
+    public function moveApplication(int $id, int $position, string $status): void
+    {
+        /** @var User $user */
+        $user = Auth::user();
+
+        $application = $user->applications()->findOrFail($id);
+
+        $application->status = ApplicationStatus::from($status);
+        $application->position = $position;
+        $application->save();
     }
 }
