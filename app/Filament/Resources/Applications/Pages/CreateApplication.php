@@ -6,6 +6,7 @@ use App\Filament\Resources\Applications\ApplicationResource;
 use App\Models\User;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class CreateApplication extends CreateRecord
 {
@@ -14,7 +15,7 @@ class CreateApplication extends CreateRecord
     protected function handleRecordCreation(array $data): Model
     {
         /** @var User $user */
-        $user = auth()->user();
+        $user = Auth::user();
 
         return $user->applications()->create($data);
 

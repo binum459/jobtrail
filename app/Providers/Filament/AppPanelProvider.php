@@ -31,7 +31,7 @@ class AppPanelProvider extends PanelProvider
             ->registration()
             ->brandName('JobTrail')
             ->colors([
-                'primary' => Color::Green,
+                'primary' => Color::Orange,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
