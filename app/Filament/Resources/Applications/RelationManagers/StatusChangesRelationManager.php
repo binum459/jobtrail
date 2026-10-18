@@ -16,6 +16,7 @@ class StatusChangesRelationManager extends RelationManager
             ->recordTitleAttribute('to_status')
             ->columns([
                 TextColumn::make('from_status')
+                    ->placeholder('—')
                     ->badge(),
                 TextColumn::make('to_status')
                     ->badge(),
