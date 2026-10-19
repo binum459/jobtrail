@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ApplicationStats extends StatsOverviewWidget
 {
+    protected static ?int $sort = 1;
+
     protected function getStats(): array
     {
         /** @var User $user */
@@ -19,15 +21,15 @@ class ApplicationStats extends StatsOverviewWidget
             Stat::make('Total applications', $user->applications()->count())
                 ->description('All jobs you are tracking'),
 
-            Stat::make('Applied', $user->applications()->where('status', [ApplicationStatus::Applied])->count())
+            Stat::make('Applied', $user->applications()->where('status', ApplicationStatus::Applied)->count())
                 ->description('Waiting for a reply')
                 ->color('info'),
 
-            Stat::make('Interviews', $user->applications()->where('status', [ApplicationStatus::Interview])->count())
+            Stat::make('Interviews', $user->applications()->where('status', ApplicationStatus::Interview)->count())
                 ->description('Prepare Well')
                 ->color('warning'),
 
-            Stat::make('Offers', $user->applications()->where('status', [ApplicationStatus::Offer])->count())
+            Stat::make('Offers', $user->applications()->where('status', ApplicationStatus::Offer)->count())
                 ->description('Congratulations')
                 ->color('success'),
         ];
