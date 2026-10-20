@@ -10,6 +10,6 @@ it('shows rejected in red', function () {
     expect(ApplicationStatus::Rejected->getColor())->toBe('danger');
 });
 
-it('shows rejected in gray', function () {
+it('shows ghosted in gray', function () {
     expect(ApplicationStatus::Ghosted->getColor())->toBe('gray');
 });

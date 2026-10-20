@@ -12,6 +12,8 @@ class CreateApplication extends CreateRecord
 {
     protected static string $resource = ApplicationResource::class;
 
+    protected static bool $canCreateAnother = false;
+
     protected function handleRecordCreation(array $data): Model
     {
         /** @var User $user */
@@ -19,5 +21,10 @@ class CreateApplication extends CreateRecord
 
         return $user->applications()->create($data);
 
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
     }
 }

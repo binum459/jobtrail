@@ -1,0 +1,42 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+/* Soft teal page background behind the login card */
+.fi-simple-layout {
+    background-color: var(--color-teal-50);
+}
+
+/* The card: no inner padding, rounded corners, so the image touches the edges */
+.fi-simple-main:has(.jt-login-hero) {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 1.75rem;
+}
+
+/* Two equal columns: illustration on the left, form on the right */
+.fi-simple-page:has(.jt-login-hero) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Space around the form */
+.fi-simple-page:has(.jt-login-hero) .fi-simple-page-content {
+    padding: 3.5rem 3rem;
+}
+
+/* On phones: one column, illustration on top */
+@media (max-width: 768px) {
+    .fi-simple-page:has(.jt-login-hero) {
+        grid-template-columns: 1fr;
+    }
+
+    .jt-login-hero {
+        min-height: auto;
+    }
+.fi-simple-page:has(.jt-login-hero) .fi-simple-page-content {
+    padding: 2rem 1.5rem;
+}
+
+}

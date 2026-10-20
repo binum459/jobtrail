@@ -39,4 +39,16 @@ enum ApplicationStatus: string implements HasColor, HasLabel
 
         };
     }
+
+    public function getChartColor(): string
+    {
+        return match ($this) {
+            self::Wishlist => '#6366f1',   // indigo
+            self::Applied => '#3b82f6',    // blue
+            self::Interview => '#f59e0b',  // amber
+            self::Offer => '#22c55e',      // green
+            self::Rejected => '#ef4444',   // red
+            self::Ghosted => '#9ca3af',    // grey
+        };
+    }
 }

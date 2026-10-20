@@ -13,6 +13,8 @@ class ApplicationsByStatusChart extends ChartWidget
 
     protected ?string $heading = 'Applications By Status';
 
+    protected ?string $maxHeight = '300px';
+
     protected function getData(): array
     {
         /** @var User $user */
@@ -24,11 +26,14 @@ class ApplicationsByStatusChart extends ChartWidget
 
         $counts = $statuses->map(fn (ApplicationStatus $status) => $user->applications()->where('status', $status)->count())->all();
 
+        $colors = $statuses->map(fn (ApplicationStatus $status) => $status->getChartColor())->all();
+
         return [
             'datasets' => [
                 [
                     'label' => 'Applications',
                     'data' => $counts,
+                    'backgroundColor' => $colors,
                 ],
             ],
             'labels' => $labels,
@@ -37,6 +42,22 @@ class ApplicationsByStatusChart extends ChartWidget
 
     protected function getType(): string
     {
-        return 'bar';
+        return 'doughnut';
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            'plugins' => [
+                'legend' => [
+                    'position' => 'right',
+                    'labels' => ['usePointStyle' => true],
+                ],
+            ],
+            'scales' => [
+                'x' => ['display' => false],
+                'y' => ['display' => false],
+            ],
+        ];
     }
 }
