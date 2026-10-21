@@ -4,10 +4,7 @@ A job application tracker with a drag-and-drop Kanban board. Move each applicati
 
 ![Kanban board](docs/screenshots/kanban.png)
 
-## Live demo
-
-Coming soon.
-
+## Demo Login
 Demo login: `demo@jobtrail.test` / `password`
 
 ## Features
