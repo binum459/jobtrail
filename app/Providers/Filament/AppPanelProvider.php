@@ -4,18 +4,14 @@ namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Login;
 use App\Filament\Pages\Auth\Register;
-use App\Filament\Pages\Dashboard;
-use App\Filament\Resources\Applications\ApplicationResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Width;
-use Filament\Support\Icons\Heroicon;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Contracts\View\View;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -56,16 +52,10 @@ class AppPanelProvider extends PanelProvider
             ->favicon(asset('images/favicon.svg'))
             ->simplePageMaxContentWidth(Width::FiveExtraLarge)
             ->globalSearch(false)
-            ->navigationItems([
-                NavigationItem::make('New application')
-                    ->url(fn (): string => ApplicationResource::getUrl('create'))
-                    ->icon(Heroicon::OutlinedPlusCircle)
-                    ->sort(-3)
-                    ->isActiveWhen(fn (): bool => request()->routeIs('filament.app.resources.applications.create')),
-            ])
-            ->renderHook(PanelsRenderHook::TOPBAR_START,
+            ->renderHook(PanelsRenderHook::TOPBAR_LOGO_AFTER,
                 fn (): View => view('filament.topbar-greeting'),
-                scopes: Dashboard::class, )
+            )
+
             ->renderHook(
                 PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE,
                 fn (): View => view('filament.auth.login-tagline'),

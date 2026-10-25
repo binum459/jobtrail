@@ -26,6 +26,8 @@
     padding: 3.5rem 3rem;
 }
 
+
+
 /* On phones: one column, illustration on top */
 @media (max-width: 768px) {
     .fi-simple-page:has(.jt-login-hero) {
@@ -40,3 +42,6 @@
 }
 
 }
+
+
+
